@@ -1,0 +1,44 @@
+﻿@model List<TestProj.Models.ViewModels.Report2ViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].To)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Plan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Fact)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.From)
+            </td>
+        </tr>
+        foreach (var itemto in item.To)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => itemto.FromTo.To.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => itemto.PlanNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => itemto.FactNumber)
+                </td>
+            </tr>
+        }
+
+    }
+</table>

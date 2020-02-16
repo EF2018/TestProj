@@ -1,0 +1,15 @@
+﻿@model List<TestProj.Models.FactRecord>
+    @foreach (var item in Model)
+    {
+        <tr class="collapse @item.PlanRecord.Id">
+            @{var date = item.Date.ToShortDateString();}
+            <td></td>
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => date)</td>
+            <td></td>
+            <td></td>
+            <td>@Html.DisplayFor(modelItem => item.Number)</td>
+            <td>@Html.ActionLink("Edit", "CreateNewFact", new { id = item.Id }) | @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </td>
+        </tr>
+    }
+

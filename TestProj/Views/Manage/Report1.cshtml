@@ -1,0 +1,43 @@
+﻿@model List<TestProj.Models.ViewModels.Report1ViewModel>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@Html.DisplayNameFor(model => model[0].Id)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model[0].Period)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model[0].From)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model[0].To)</th>
+                <th scope="col">@Html.DisplayNameFor(model => model[0].Plan)</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int id = -1;}
+            @foreach (var item in Model)
+            {
+                id++;
+                <tr data-toggle="collapse" data-target=".@item.Id.ToString()">
+                    <td>&oplus;</td>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Html.DisplayFor(modelItem => item.Period)</td>
+                    <td>@Html.DisplayFor(modelItem => item.From)</td>
+                    <td>@Html.DisplayFor(modelItem => item.To)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Plan)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "CreateNewPlan", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                    <td></td>
+                </tr>
+                @Html.Partial("FactDays", item.DayFactRecords)
+                <tr class="collapse @item.Id">
+                    <td colspan="7">@Html.ActionLink("Add New Date", "CreateNewFact", new { idPlan = item.Id })</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+        
